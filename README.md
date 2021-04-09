@@ -63,7 +63,48 @@ Converted JSON timespan:
 
 ## Ingest template
 
+The default video ingest template is replaced with `partials/video_ingest.j2.json` to include three SHELL jobs:
 
+```json
+{
+  "type": "SHELL",
+  "metadata": [
+    {
+      "key": "command",
+      "value": "/usr/local/bin/bframe.sh"
+    },
+    {
+      "key": "command",
+      "value": "${target_path_export}"
+    }
+  ]
+},
+{
+  "type": "SHELL",
+  "metadata": [
+    {
+      "key": "command",
+      "value": "/usr/local/bin/parse_bframe.py"
+    }
+  ]
+},
+{
+  "type": "SHELL",
+  "metadata": [
+    {
+      "key": "command",
+      "value": "/usr/local/bin/import_timespan.sh"
+    },
+    {
+      "key": "command",
+      "value": "{{metadata.target_asset_id}}"
+    }
+  ]
+},
+```
 
+* `bframe.sh <file_name>` - executes FFmpeg on asset video file
+* `parse_bframe.py` - parses FFmpeg output and converts into timespan format
+* `import_timespans.sh <asset_id>` - ingests timespans onto asset
 
 
