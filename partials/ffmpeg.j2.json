@@ -1,0 +1,69 @@
+{
+  "type": "SHELL",
+  "metadata": [
+    {
+      "key": "command",
+      "value": "ffmpeg"
+    },
+    {
+      "key": "command",
+      "value": "-hide_banner"
+    },
+    {
+      "key": "command",
+      "value": "-nostats"
+    },
+    {
+      "key": "command",
+      "value": "-loglevel"
+    },
+    {
+      "key": "command",
+      "value": "info"
+    },
+    {
+      "key": "command",
+      "value": "-i"
+    },
+    {
+      "key": "command",
+      "value": "${target_path_export}"
+    },
+    {
+      "key": "command",
+      "value": "-vf"
+    },
+    {
+      "key": "command",
+      "value": "blackdetect=d=1:pic_th=0.98:pix_th=0.10"
+    },
+    {
+      "key": "command",
+      "value": "-f"
+    },
+    {
+      "key": "command",
+      "value": "rawvideo"
+    },
+    {
+      "key": "command",
+      "value": "-y"
+    },
+    {
+      "key": "command",
+      "value": "/dev/null"
+    },
+    {
+      "key": "command",
+      "value": ">"
+    },
+    {
+      "key": "command",
+      "value": "bframe_output.txt"
+    },
+    {
+      "key": "command",
+      "value": "2>&1"
+    },
+  ]
+},

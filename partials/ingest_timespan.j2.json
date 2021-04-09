@@ -1,0 +1,45 @@
+{
+  "type": "SHELL",
+  "metadata": [
+    {
+      "key": "command",
+      "value": "curl"
+    },
+    {
+      "key": "command",
+      "value": "-X"
+    },
+    {
+      "key": "command",
+      "value": "POST"
+    },
+    {
+      "key": "command",
+      "value": "${AP_ADAPTER_URL_MP_REST_URL}/asset/${target_path_export}/timespan/bulk"
+    },
+    {
+      "key": "command",
+      "value": "-u"
+    },
+    {
+      "key": "command",
+      "value": "${AP_ADAPTER_USERNAME}:${AP_ADAPTER_PASSWORD}"
+    },
+    {
+      "key": "command",
+      "value": "-H"
+    },
+    {
+      "key": "command",
+      "value": "'Content-Type: application/json'"
+    },
+    {
+      "key": "command",
+      "value": "-d"
+    },
+    {
+      "key": "command",
+      "value": "@timespans.json"
+    },
+  ]
+},
