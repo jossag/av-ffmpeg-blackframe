@@ -1,0 +1,97 @@
+[
+  {
+    "type": "Black_Frame",
+    "startSeconds": "0",
+    "endSeconds": "2.833",
+    "metadata": [
+      {
+        "key": "name",
+        "value": "Black frame"
+      },
+      {
+        "key": "description",
+        "value": "Duration: 2.833 seconds"
+      },
+      {
+        "key": "subtype",
+        "value": "av:track:video:black_frame"
+      }
+    ]
+  },
+  {
+    "type": "Black_Frame",
+    "startSeconds": "101.208",
+    "endSeconds": "103.208",
+    "metadata": [
+      {
+        "key": "name",
+        "value": "Black frame"
+      },
+      {
+        "key": "description",
+        "value": "Duration: 2 seconds"
+      },
+      {
+        "key": "subtype",
+        "value": "av:track:video:black_frame"
+      }
+    ]
+  },
+  {
+    "type": "Black_Frame",
+    "startSeconds": "677",
+    "endSeconds": "679.75",
+    "metadata": [
+      {
+        "key": "name",
+        "value": "Black frame"
+      },
+      {
+        "key": "description",
+        "value": "Duration: 2.75 seconds"
+      },
+      {
+        "key": "subtype",
+        "value": "av:track:video:black_frame"
+      }
+    ]
+  },
+  {
+    "type": "Black_Frame",
+    "startSeconds": "744.083",
+    "endSeconds": "750.792",
+    "metadata": [
+      {
+        "key": "name",
+        "value": "Black frame"
+      },
+      {
+        "key": "description",
+        "value": "Duration: 6.709 seconds"
+      },
+      {
+        "key": "subtype",
+        "value": "av:track:video:black_frame"
+      }
+    ]
+  },
+  {
+    "type": "Black_Frame",
+    "startSeconds": "764.375",
+    "endSeconds": "767.917",
+    "metadata": [
+      {
+        "key": "name",
+        "value": "Black frame"
+      },
+      {
+        "key": "description",
+        "value": "Duration: 3.542 seconds"
+      },
+      {
+        "key": "subtype",
+        "value": "av:track:video:black_frame"
+      }
+    ]
+  }
+]

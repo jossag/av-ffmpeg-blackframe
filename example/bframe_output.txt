@@ -1,0 +1,83 @@
+Input #0, matroska,webm, from '/home/jonas/Videos/Samples/Sintel/Video/Sintel.2010.720p.mkv':
+  Metadata:
+    encoder         : libebml v1.0.0 + libmatroska v1.0.0
+    creation_time   : 2011-04-24T17:20:33.000000Z
+  Duration: 00:14:48.03, start: 0.000000, bitrate: 6071 kb/s
+    Chapter #0:0: start 0.000000, end 103.125000
+    Metadata:
+      title           : Chapter 01
+    Chapter #0:1: start 103.125000, end 148.667000
+    Metadata:
+      title           : Chapter 02
+    Chapter #0:2: start 148.667000, end 349.792000
+    Metadata:
+      title           : Chapter 03
+    Chapter #0:3: start 349.792000, end 437.208000
+    Metadata:
+      title           : Chapter 04
+    Chapter #0:4: start 437.208000, end 472.075000
+    Metadata:
+      title           : Chapter 05
+    Chapter #0:5: start 472.075000, end 678.833000
+    Metadata:
+      title           : Chapter 06
+    Chapter #0:6: start 678.833000, end 744.083000
+    Metadata:
+      title           : Chapter 07
+    Chapter #0:7: start 744.083000, end 888.032000
+    Metadata:
+      title           : Chapter 08
+    Stream #0:0(eng): Video: h264 (High), yuv420p(tv, bt709/unknown/unknown, progressive), 1280x544, SAR 1:1 DAR 40:17, 24 fps, 24 tbr, 1k tbn, 48 tbc
+    Stream #0:1(eng): Audio: ac3, 48000 Hz, 5.1(side), fltp, 640 kb/s
+    Metadata:
+      title           : AC3 5.1 @ 640 Kbps
+    Stream #0:2(ger): Subtitle: subrip
+    Stream #0:3(eng): Subtitle: subrip
+    Stream #0:4(spa): Subtitle: subrip
+    Stream #0:5(fre): Subtitle: subrip
+    Stream #0:6(ita): Subtitle: subrip
+    Stream #0:7(dut): Subtitle: subrip
+    Stream #0:8(pol): Subtitle: subrip
+    Stream #0:9(por): Subtitle: subrip
+    Stream #0:10(rus): Subtitle: subrip
+    Stream #0:11(vie): Subtitle: subrip
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> rawvideo (native))
+Press [q] to stop, [?] for help
+Output #0, rawvideo, to '/dev/null':
+  Metadata:
+    encoder         : Lavf58.45.100
+    Chapter #0:0: start 0.000000, end 103.125000
+    Metadata:
+      title           : Chapter 01
+    Chapter #0:1: start 103.125000, end 148.667000
+    Metadata:
+      title           : Chapter 02
+    Chapter #0:2: start 148.667000, end 349.792000
+    Metadata:
+      title           : Chapter 03
+    Chapter #0:3: start 349.792000, end 437.208000
+    Metadata:
+      title           : Chapter 04
+    Chapter #0:4: start 437.208000, end 472.075000
+    Metadata:
+      title           : Chapter 05
+    Chapter #0:5: start 472.075000, end 678.833000
+    Metadata:
+      title           : Chapter 06
+    Chapter #0:6: start 678.833000, end 744.083000
+    Metadata:
+      title           : Chapter 07
+    Chapter #0:7: start 744.083000, end 888.032000
+    Metadata:
+      title           : Chapter 08
+    Stream #0:0(eng): Video: rawvideo (I420 / 0x30323449), yuv420p, 1280x544 [SAR 1:1 DAR 40:17], q=2-31, 200540 kb/s, 24 fps, 24 tbn, 24 tbc
+    Metadata:
+      encoder         : Lavc58.91.100 rawvideo
+[blackdetect @ 0x55fddb0a5880] black_start:0 black_end:2.833 black_duration:2.833
+[blackdetect @ 0x55fddb0a5880] black_start:101.208 black_end:103.208 black_duration:2
+[blackdetect @ 0x55fddb0a5880] black_start:677 black_end:679.75 black_duration:2.75
+[blackdetect @ 0x55fddb0a5880] black_start:744.083 black_end:750.792 black_duration:6.709
+[blackdetect @ 0x55fddb0a5880] black_start:764.375 black_end:767.917 black_duration:3.542
+frame=21312 fps=371 q=-0.0 Lsize=21738240kB time=00:14:48.00 bitrate=200540.2kbits/s speed=15.5x    
+video:21738240kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.000000%
