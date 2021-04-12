@@ -1,13 +1,34 @@
-# FFmpeg black frame detection for Accurate.Video
+# Black frame detection using FFmpeg in Accurate.Video
 
-Integration to use FFmpeg for black frame detection during ingest in Accurate.Video using a custom ingest template. Using the blackdetect video filter in FFmpeg it's easy to detect video intervals that are (almost) completely black. This is useful to detect chapter transitions, commercials, or invalid recordings, and this example shows a complete integration on how to integrate this with Accurate.Video for visualization in the timeline.
+This repository contains an integration to use FFmpeg to detect video intervals that are (almost) completely black, 
+commonly referred to as black frame detection. This detection is described using custom job templates, which are 
+configured to run during ingest, but on-demand execution is possible too. Visualization of black intervals in the 
+video is done by configuring the Accurate.Video timeline. This is useful for QC operators performing validation of 
+content to highlight and suggest chapter transitions, commercials, or invalid recordings. 
 
 ## FFmpeg blackdetect
 
-Refer to the blackdetect filter in the FFmpeg docs for more details.  
-https://ffmpeg.org/ffmpeg-all.html#blackdetect
+There is a video filter to FFmpeg called blackdetect which can be used specifically for this use case. The filter will
+run an analysis on each frame in a video, defined by some parameters which can be set. For every matching interval 
+found that is within the minimum duration, a line is printed to the normal log output with the start, end, and duration 
+of the interval in seconds.
+
+Sample output:
+```
+[blackdetect @ 0x564caad3d380] black_start:0 black_end:3.625 black_duration:3.625
+[blackdetect @ 0x564caad3d380] black_start:101.208 black_end:104.083 black_duration:2.875
+[blackdetect @ 0x564caad3d380] black_start:146.542 black_end:150.583 black_duration:4.041
+[blackdetect @ 0x564caad3d380] black_start:435.458 black_end:438 black_duration:2.542
+[blackdetect @ 0x564caad3d380] black_start:676.792 black_end:680.708 black_duration:3.916
+[blackdetect @ 0x564caad3d380] black_start:744.083 black_end:756.75 black_duration:12.667
+[blackdetect @ 0x564caad3d380] black_start:756.833 black_end:774.708 black_duration:17.875
+[blackdetect @ 0x564caad3d380] black_start:781.333 black_end:784.917 black_duration:3.584
+```
 
 ### Usage
+
+Refer to the blackdetect filter in the FFmpeg docs for more details on usage.  
+https://ffmpeg.org/ffmpeg-all.html#blackdetect
 
 ```
 fmpeg -i input -vf blackdetect=d=1:pic_th=0.98:pix_th=0.10 -f rawvideo -y /dev/null
@@ -26,16 +47,16 @@ Set the threshold for considering a pixel "black". Default value is 0.10.
 
 ### Script
 
-A convenient bash-script in `bin/bframe.sh` can be used with the video input file as argument. This script redirects the output from FFmpeg into a file called `bframe_output.txt` which is later parsed and converted to json. 
+A convenient bash-script in `bin/bframe.sh` can be used with the video input file as argument. This script redirects 
+the output from FFmpeg into a file called `bframe_output.txt`, which can be parsed in a later stage. 
 
 ## Parsing
 
 A Python script `bin/parse_bframe.py` parses the FFmpeg output and transforms it into Accurate.Video timespan format.
 
-### Example
+Here is an example for a single black frame interval. Each interval will result in many blocks of JSON like this.
 
-Output from FFmpeg:
-
+FFmpeg output:
 ```
 [blackdetect @ 0x55e3ac098840] black_start:0 black_end:3.625 black_duration:3.625
 ```
@@ -67,7 +88,20 @@ Converted JSON timespan:
 
 ## Ingest template
 
-The default video ingest template is replaced with `partials/video_ingest.j2.json` to include three `SHELL` jobs:
+The default video ingest template from Accurate.Video is used, but three additional steps have been added which all
+execute `SHELL` type tasks. 
+
+The following tasks are run at the end of the template:
+
+* `bframe.sh <file_name>` - runs FFmpeg on asset video file
+* `parse_bframe.py` - parses FFmpeg output and converts into timespan format
+* `import_timespans.sh <asset_id>` - ingests timespans onto asset
+
+Note: there is no need to run the first and third tasks as bash scripts, the commands can be included directly in the 
+template if so preferred. Using a custom script just makes it easier to manage and test.
+
+Below are the three additional commands being added to the video ingest template. The full template can be found in
+`partials/video_ingest.j2.json`.
 
 ```json
 {
@@ -107,13 +141,10 @@ The default video ingest template is replaced with `partials/video_ingest.j2.jso
 },
 ```
 
-The `SHELL` commands executes the following:
-
-* `bframe.sh <file_name>` - runs FFmpeg on asset video file
-* `parse_bframe.py` - parses FFmpeg output and converts into timespan format
-* `import_timespans.sh <asset_id>` - ingests timespans onto asset
-
 ## Configure timeline
+
+The Accurate.Video timeline needs to be configured to show the black frame metadata. This is as simple as including
+the following section in your configuration:
 
 ```json
   markers: {
