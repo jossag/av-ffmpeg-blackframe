@@ -4,13 +4,15 @@ import re
 import json
 
 rx_dict = {
-	'bframe': re.compile('\[blackdetect @ .*\] black_start:(?P<start>.*) black_end:(?P<end>.*) black_duration:(?P<duration>.*)'),
+    'bframe': re.compile(
+        '\[blackdetect @ .*\] black_start:(?P<start>.*) black_end:(?P<end>.*) black_duration:(?P<duration>.*)'),
 }
 
-BFRAME_OUTPUT_FILE='bframe_output.txt'
-TIMESPANS_FILE='timespans.json'
-AV_TYPE='Black_Frame'
-AV_SUBTYPE='av:track:video:black_frame'
+BFRAME_OUTPUT_FILE = 'bframe_output.txt'
+TIMESPANS_FILE = 'timespans.json'
+AV_TYPE = 'Black_Frame'
+AV_SUBTYPE = 'av:track:video:black_frame'
+
 
 def parse_line(line):
     for key, rx in rx_dict.items():
@@ -19,19 +21,16 @@ def parse_line(line):
             return key, match
     return None, None
 
+
 def create_metadata(key, value):
-    obj = {}
-    obj['key'] = key
-    obj['value'] = value
+    obj = {'key': key, 'value': value}
     return obj
 
+
 def create_bframe(start, end, duration, metadata):
-    obj = {}
-    obj['type'] = AV_TYPE
-    obj['startSeconds'] = start
-    obj['endSeconds'] = end
-    obj['metadata'] = metadata
+    obj = {'type': AV_TYPE, 'startSeconds': start, 'endSeconds': end, 'metadata': metadata}
     return obj
+
 
 def parse_file(filepath):
     metadata = []
@@ -53,9 +52,11 @@ def parse_file(filepath):
 
     return metadata
 
+
 def write_json(file, json):
     with open(file, 'w') as file_object:
         file_object.write(json)
+
 
 if __name__ == '__main__':
     data = parse_file(BFRAME_OUTPUT_FILE)
