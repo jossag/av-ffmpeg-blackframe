@@ -1,18 +1,18 @@
 # Black frame detection using FFmpeg in Accurate.Video
 
 This repository contains an integration to FFmpeg for black frame detection during ingest in Accurate.Video. More 
-accurately, it will detect video intervals that are (almost) completely black, meaning there needs to be many 
-subsequent black frames to be flagged as a black interval. This duration as well as the minimum pixel and frame 
-thresholds can be customized using parameters to the black frame detection filter.
+accurately, it will detect video intervals that are (almost) completely black, meaning there need to be many 
+subsequent black frames for flagging as a black interval. The duration and the minimum pixel and frame thresholds 
+can be customized using parameters to the black frame detection filter.
 
-The black frame detection will run as part of the video ingest process, where the default job template used for 
-video files has been modified to include an additional step, defined as a shell action. Although typically executed 
-during ingest, the black frame detection can run on-demand as well, but that's not covered in this repo. Note that 
-black frame detection is a much quicker process than transcoding, and executes in a speed of roughly 17x for a typical 
-720p Sintel video, meaning that it will take roughly 1 minute to analyze a video 17 minutes long.
+The black frame detection will run as part of the video ingest process, where the default job template used for video 
+files is modified to include an additional step, defined as a shell action. Although typically executed during ingest, 
+the black frame detection can run on-demand, but that's not covered in this repo. Note that
+black frame detection is a much quicker process than transcoding and executes at a speed of roughly 17x for a typical
+720p Sintel video, meaning that it will take approximately 1 minute to analyze a video 17 minutes long.
 
-Black frame detection is a very common use case to visualize as metadata to end-users such as QC operators when 
-performing validation of content to highlight and suggest chapter transitions, commercials, or invalid recordings. 
+Black frame detection is a widespread use case to visualize as metadata to end-users such as QC operators when
+performing validation of content to highlight and suggest chapter transitions, commercials, or invalid recordings.
 
 ## FFmpeg blackdetect
 
@@ -41,9 +41,7 @@ ffmpeg -i input -vf blackdetect=d=1:pic_th=0.98:pix_th=0.10 -f rawvideo -y /dev/
 
 The above command will detect black frame intervals of at least 1 second of subsequent black frames, where each frame
 needs to be 98% black to be considered a black frame, and each pixel has 10% variance from being completely black. This
-is a pretty strict setup that only gives black intervals which are chapter transitions or black frames. In some use 
-cases it's common to use 10-20 subsequent black frames, note that for this example this would not trigger depending 
-on the frame rate of the video, since the interval is given in seconds and not frames.
+is a pretty strict setup.
 
 Sample output from Sintel:
 ```

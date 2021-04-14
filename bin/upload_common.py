@@ -12,8 +12,8 @@ def create_template(type, name, filename):
     obj = {
         'type': type,
         'metadata': [{
-            'key': 'value',
-            'name': name
+            'key': 'name',
+            'value': name
         }],
         'blob': content
     }
