@@ -9,15 +9,13 @@ def create_template(type, name, filename):
     with open(filename) as f:
         content = f.read()
 
-    escaped_file = json.dumps(content)
-
     obj = {
         'type': type,
         'metadata': [{
             'key': 'value',
-            'value': name
+            'name': name
         }],
-        'blob': escaped_file
+        'blob': content
     }
 
     return obj

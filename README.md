@@ -143,7 +143,7 @@ Below are the three additional commands being added to the video ingest template
 
 Note that the scripts that are uploaded to the runner will execute from `/opt/dynamic-settings/runner-script`.
 
-### Uploading template & script to runner
+### Uploading template & scripts
 
 The updated `partials/video_ingest.j2.json` template needs to be uploaded to the runner, overwriting the default one.
 The three scripts also need to be uploaded to the runner. This is explained here: https://accurate.video/docs/guides/accuratevideo-templates/#adding-or-overriding-templates-via-the-settings-api  
