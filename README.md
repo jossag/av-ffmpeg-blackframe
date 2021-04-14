@@ -109,7 +109,7 @@ Below are the three additional commands being added to the video ingest template
   "metadata": [
     {
       "key": "command",
-      "value": "/usr/local/bin/bframe.sh"
+      "value": "/opt/dynamic-settings/runner-script/bframe.sh"
     },
     {
       "key": "command",
@@ -122,7 +122,7 @@ Below are the three additional commands being added to the video ingest template
   "metadata": [
     {
       "key": "command",
-      "value": "/usr/local/bin/parse_bframe.py"
+      "value": "/opt/dynamic-settings/runner-script/parse_bframe.py"
     }
   ]
 },
@@ -131,7 +131,7 @@ Below are the three additional commands being added to the video ingest template
   "metadata": [
     {
       "key": "command",
-      "value": "/usr/local/bin/import_timespan.sh"
+      "value": "/opt/dynamic-settings/runner-script/import_timespan.sh"
     },
     {
       "key": "command",
@@ -139,6 +139,31 @@ Below are the three additional commands being added to the video ingest template
     }
   ]
 },
+```
+
+Note that the scripts that are uploaded to the runner will execute from `/opt/dynamic-settings/runner-script`.
+
+### Uploading template & script to runner
+
+The updated `partials/video_ingest.j2.json` template needs to be uploaded to the runner, overwriting the default one.
+The three scripts also need to be uploaded to the runner. This is explained here: https://accurate.video/docs/guides/accuratevideo-templates/#adding-or-overriding-templates-via-the-settings-api  
+
+There are two convenience scripts in the `bin` folder, called `upload_template.py` and `upload_script.py` which can 
+be used to simplify this process. The syntax for these two scripts are:
+
+```
+./upload_template.py <template name> <script name> <base url> <user> <password>
+./upload_script.py <script name> <base url> <user> <password>'
+```
+
+Here is an example which uploads the video ingest template and the three scripts to the AV API at 
+`https://av.jonas.cmtest.se/API/settings`. Use the runner credentials from AWS Secrets Manager.
+
+```
+./upload_template.py 'partials/video_ingest' 'parse_bframe.py' 'https://av.jonas.cmtest.se' 'runner' "xxx"
+./upload_script.py 'parse_bframe.py' 'https://av.jonas.cmtest.se' 'runner' 'xxx'
+./upload_script.py 'bframe.sh' 'https://av.jonas.cmtest.se' 'runner' 'xxx'
+./upload_script.py 'import_timespan.sh' 'https://av.jonas.cmtest.se' 'runner' 'xxx'
 ```
 
 ## Configure timeline
