@@ -31,7 +31,7 @@ def post_template(url, body, user, password):
     print(response.text)
 
 
-# ./submit_template.py 'partials/video_ingest' 'parse_bframe.py' 'https://av.jonas.cmtest.se' 'admin' 'uZJhUc6QW5bMBqK9'
+# ./upload_template.py 'partials/video_ingest' 'parse_bframe.py' 'https://av.jonas.cmtest.se' 'admin' 'uZJhUc6QW5bMBqK9'
 if __name__ == '__main__':
     if len(sys.argv) != 6:
         print('Syntax:', sys.argv[0], '<template name> <script name> <base api url> <user> <password>')
