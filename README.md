@@ -2,7 +2,7 @@
 
 This repository contains an integration to FFmpeg for black frame detection during ingest in Accurate.Video. More 
 accurately, it will detect video intervals that are (almost) completely black, meaning there need to be many 
-subsequent black frames for flagging as a black interval. The duration and the minimum pixel and frame thresholds 
+subsequent black frames to be flagged as a black interval. The duration and the minimum pixel and frame thresholds 
 can be customized using parameters to the black frame detection filter.
 
 The black frame detection will run as part of the video ingest process, where the default job template used for video 
@@ -19,9 +19,9 @@ performing validation of content to highlight and suggest chapter transitions, c
 ## FFmpeg blackdetect
 
 FFmpeg has a video filter called _blackdetect_ which can be used specifically for this use case. The filter will
-run an analysis on each frame in a video, defined by some parameters which can be set. For every matching interval 
-found that is within the minimum duration, a line is printed to the normal log output with the start, end, and duration 
-of the interval in seconds.
+run an analysis on each frame in a video, based on the parameters given. For every matching interval found that is 
+within the minimum duration, a line is printed to the normal log output with the start, end, and duration of the 
+interval in seconds.
 
 ### Usage
 
