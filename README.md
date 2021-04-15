@@ -235,7 +235,7 @@ Marker type must match `Black_Frame`, and the marker track `av:track:video:black
             track: "av:track:video:black_frame",
             match: () => true,
             title: "Black frame",
-            tooltip: ({ metadata }) => metadata.get("name")
+            tooltip: ({ metadata }) => metadata.get("description")
           }
         ],
         markerStyle: _ => ({ backgroundColor: "#A9A9A9" })
