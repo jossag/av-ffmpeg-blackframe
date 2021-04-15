@@ -68,6 +68,8 @@ stdout is suppressed when using this script.
 Input file: /Videos/Sintel.2010.720p.mkv
 ```
 
+This script is used in the job template as the first step.
+
 ## Parsing
 
 To make the black frame metadata reported by FFmpeg available to use in Accurate.Video, it first needs to be parsed
