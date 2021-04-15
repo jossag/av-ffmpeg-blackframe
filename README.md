@@ -6,7 +6,7 @@ subsequent black frames for flagging as a black interval. The duration and the m
 can be customized using parameters to the black frame detection filter.
 
 The black frame detection will run as part of the video ingest process, where the default job template used for video 
-files is modified to include an additional step, defined as a shell action. Although typically executed during ingest, 
+files is modified to include additional steps, defined as shell actions. Although typically executed during ingest, 
 the black frame detection can run on-demand, but that's not covered in this repo. Note that
 black frame detection is a much quicker process than transcoding and executes at a speed of roughly 17x for a typical
 720p Sintel video, meaning that it will take approximately 1 minute to analyze a video 17 minutes long.
