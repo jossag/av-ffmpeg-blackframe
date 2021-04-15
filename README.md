@@ -110,10 +110,9 @@ Converted JSON timespan:
 ]
 ```
 
-The way the JSON format is structured is completely optional, and can be changed if desired. The metadata is stored
-with the subtype `av:track:video:black_frame` here, with a global type of `Black_Frame`. The name of the marker is 
-simply `Black frame`, and for description the duration of the interval is used, which will be shown when hovering
-over the marker in the timeline.
+The metadata is stored with the subtype `av:track:video:black_frame`, with a global type of `Black_Frame`. The name 
+of the marker is simply `Black frame`, and for description the duration of the interval is used, which will be shown 
+when hovering over the marker in the timeline.
 
 What's extremely convenient here is that you can use either frames, seconds, or ticks when submitting metadata, and AV
 will automatically convert this based on the frame rate of the asset. In this case, the `startSeconds` and `endSeconds`
