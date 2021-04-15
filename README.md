@@ -7,9 +7,9 @@ can be customized using parameters to the black frame detection filter.
 
 The black frame detection will run as part of the video ingest process, where the default job template used for video 
 files is modified to include additional steps, defined as shell actions. Although typically executed during ingest, 
-the black frame detection can run on-demand, but that's not covered in this repo. Note that
-black frame detection is a much quicker process than transcoding and executes at a speed of roughly 17x for a typical
-720p Sintel video, meaning that it will take approximately 1 minute to analyze a video 17 minutes long.
+the black frame detection can also run on-demand, but that's not covered in this repo. Speed wise, black frame
+detection is a relatively quick process, executing at ~17x speed, meaning a 17-minute-long minute will take roughly 
+1 minute to analyze.
 
 Black frame detection is a widespread use case to visualize as metadata to end-users such as QC operators when
 performing validation of content to highlight and suggest chapter transitions, commercials, or invalid recordings.
@@ -18,7 +18,7 @@ performing validation of content to highlight and suggest chapter transitions, c
 
 ## FFmpeg blackdetect
 
-FFmpeg has a video filter called blackdetect which can be used specifically for this use case. The filter will
+FFmpeg has a video filter called _blackdetect_ which can be used specifically for this use case. The filter will
 run an analysis on each frame in a video, defined by some parameters which can be set. For every matching interval 
 found that is within the minimum duration, a line is printed to the normal log output with the start, end, and duration 
 of the interval in seconds.
