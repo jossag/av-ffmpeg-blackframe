@@ -8,7 +8,7 @@ can be customized using parameters to the black frame detection filter.
 The black frame detection will run as part of the video ingest process, where the default job template used for video 
 files is modified to include additional steps, defined as shell actions. Although typically executed during ingest, 
 the black frame detection can also run on-demand, but that's not covered in this repo. Speed wise, black frame
-detection is a relatively quick process, executing at ~17x speed, meaning a 17-minute-long minute will take roughly 
+detection is a relatively quick process, executing at ~17x speed, meaning a 17-minute-long video will take roughly 
 1 minute to analyze.
 
 Black frame detection is a widespread use case to visualize as metadata to end-users such as QC operators when
