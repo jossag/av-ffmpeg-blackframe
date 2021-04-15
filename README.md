@@ -14,6 +14,8 @@ black frame detection is a much quicker process than transcoding and executes at
 Black frame detection is a widespread use case to visualize as metadata to end-users such as QC operators when
 performing validation of content to highlight and suggest chapter transitions, commercials, or invalid recordings.
 
+![Black frame detection in Accurate.Video](img/av-bframe.png)
+
 ## FFmpeg blackdetect
 
 FFmpeg has a video filter called blackdetect which can be used specifically for this use case. The filter will
@@ -206,34 +208,63 @@ Here is an example for uploading a partial video ingest template, and the three 
 ./upload_script.py 'import_timespan.sh' 'import_timespan.sh' 'https://av.jonas.cmtest.se' 'runner' 'xxx'
 ```
 
+When the ingest process runs, there will now be three additional `SHELL` steps in the ingest pipeline.
+
+![Ingest pipeline](img/ingest.png)
+
 ## Configure timeline
 
-The last required step is to configure the Accurate.Video timeline to show this metadata. This is as simple as 
-including the following section in your configuration:
+The last required step is to configure the Accurate.Video timeline to show the captured metadata. Include the following 
+section in your `settings.js` configuration:
 
-```json
+Marker type must match `Black_Frame`, and the marker track `av:track:video:black_frame`.
+
+```javascript
   markers: {
     groups: [
       {
         match: marker => marker && marker.type === "Black_Frame",
-        title: "Black frames",
-        id: "blackFrame",
+        title: "Markers",
+        id: "markers",
         readOnly: true,
         alwaysShow: false,
-        trackType: "Black_Frame",
         rows: [
           {
-            match: (marker, track) =>
-              !!marker?.metadata.get("trackId") || !!track,
-            track: (marker, track) => track.id,
-            title: (marker, track) => track?.metadata.get("name"),
-            tooltip: ({ metadata }) => metadata.get("description")
-            order: (marker, track) => parseInt(track?.id, 10) ?? 4,
             markerType: "Black_Frame",
-            alwaysShow: false
+            track: "av:track:video:black_frame",
+            match: () => true,
+            title: "Black frame",
+            tooltip: ({ metadata }) => metadata.get("name")
           }
-        ]
+        ],
+        markerStyle: _ => ({ backgroundColor: "#A9A9A9" })
       },
+      {
+        match: () => true, // Default
+        id: marker => marker.type,
+        title: marker => marker.type,
+        alwaysHide: true,
+        rows: []
+      }
     ],
-  },
+    markersMetadataSettings: [
+      {
+        match: () => true, // Default
+        mappings: {
+          name: "name",
+          description: "description",
+          trackId: "subtype"
+        }
+      }
+    ],
+    tracksMetadataSettings: [
+      {
+        match: () => true, // Default
+        mappings: {
+          name: "name",
+          description: "description"
+        }
+      }
+    ]
+  }
 ```
