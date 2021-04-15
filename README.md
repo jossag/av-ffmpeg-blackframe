@@ -125,7 +125,7 @@ is only relevant for video files, so we'll only need to modify the video ingest 
 called from the main ingest template. To start with, download the full video ingest template available here: 
 https://accurate.video/docs/guides/accuratevideo-templates/#partialsvideo_ingest
 
-At the end of this template, three additional steps have been added, which all has the type `SHELL`, meaning the runner
+At the end of this template, three additional steps have been added, which all have the type `SHELL`, meaning the runner
 will execute them as regular shell commands. For simplicity the black frame process has been split into three steps:
 
 * `bframe.sh <file_name>` - runs FFmpeg on asset video file
