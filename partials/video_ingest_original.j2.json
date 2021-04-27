@@ -1,0 +1,176 @@
+{
+  "type": "EXPORT_FILE",
+  "metadata": [
+    {
+      "key": "source_file_id",
+      "value": "{{file.id}}"
+    },
+    {
+      "key": "target_path",
+      "value": "v-{{file.fileName}}"
+    },
+    {
+      "key": "target_path_export",
+      "value": "v-{{file.fileName}}"
+    }
+  ]
+},
+{
+  "type": "POSTER",
+  "metadata": [
+    {
+      "key": "original_file_type",
+      "value": "{{file.type}}"
+    },
+    {
+      "key": "source_path",
+      "value": "${target_path_export}"
+    },
+    {
+      "key": "target_path_poster",
+      "value": "poster_{{file.id}}_{{uuid}}.jpg"
+    }
+  ]
+},
+{
+  "type": "IMPORT_FILE",
+  "metadata": [
+    {
+      "key": "source_path",
+      "value": "${target_path_poster}"
+    },
+    {
+      "key": "skip_if_previous_skipped",
+      "value": "true"
+    },
+    {
+      "key": "target_path",
+      "value": "posters/${target_path_poster}"
+    },
+    {
+      "key": "target_storage_id",
+      "value": "{% storage_id_by_tag poster %}"
+    },
+    {
+      "key": "file_metadata:still_frame:type",
+      "value": "poster"
+    },
+    {
+      "key": "file_metadata:ap:legacy:resolution",
+      "value": "${poster:resolution}"
+    },
+    {
+      "key": "file_metadata:still_frame:timestamp",
+      "value": "${poster:timestamp}"
+    },
+    {
+      "key": "file_metadata:original_file_id",
+      "value": "{{file.id}}"
+    },
+    {
+      "key": "target_path_exist_policy",
+      "value": "overwrite"
+    }
+  ]
+},
+{
+  "type": "ATTACH_FILE",
+  "metadata": [
+    {
+      "key": "file_id",
+      "value": "${target_file_id}"
+    },
+    {
+      "key": "asset_id",
+      "value": "{{metadata.target_asset_id}}"
+    },
+    {
+      "key": "skip_if_previous_skipped",
+      "value": "true"
+    }
+  ]
+},
+{
+  "type": "SPRITE_MAP",
+  "metadata": [
+    {
+      "key": "original_file_type",
+      "value": "{{file.type}}"
+    },
+    {
+      "key": "source_path",
+      "value": "${target_path_export}"
+    },
+    {
+      "key": "interval_count",
+      "value": "50"
+    },
+    {
+      "key": "interval_seconds",
+      "value": "10"
+    },
+    {
+      "key": "target_path_spritemap",
+      "value": "spritemap_{{file.id}}_{{uuid}}.jpg"
+    }
+  ]
+},
+{
+  "type": "IMPORT_FILE",
+  "metadata": [
+    {
+      "key": "source_path",
+      "value": "${target_path_spritemap}"
+    },
+    {
+      "key": "skip_if_previous_skipped",
+      "value": "true"
+    },
+    {
+      "key": "target_path",
+      "value": "spritemaps/${target_path_spritemap}"
+    },
+    {
+      "key": "target_storage_id",
+      "value": "{% storage_id_by_tag sprite_map %}"
+    },
+    {
+      "key": "file_metadata_file:sprite_map",
+      "value": "${target_path_manifest}"
+    },
+    {
+      "key": "file_metadata:original_file_id",
+      "value": "{{file.id}}"
+    },
+    {
+      "key": "file_type",
+      "value": "SPRITE_MAP"
+    },
+    {
+      "key": "target_path_exist_policy",
+      "value": "overwrite"
+    }
+  ]
+},
+{
+  "type": "ATTACH_FILE",
+  "metadata": [
+    {
+      "key": "file_id",
+      "value": "${target_file_id}"
+    },
+    {
+      "key": "asset_id",
+      "value": "{{metadata.target_asset_id}}"
+    },
+    {
+      "key": "skip_if_previous_skipped",
+      "value": "true"
+    }
+  ]
+},
+// {% if metadata.run_rekognition eq 'true' %}
+{% include 'partials/rekognition_allow_fail.j2.json' %}
+// {% endif %}
+
+{% include 'partials/waveform.j2.json' %}
